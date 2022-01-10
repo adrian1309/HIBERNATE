@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.reviews.FXMLHibernateListReviewsController">
+   <children>
+      <Label layoutX="33.0" layoutY="14.0" text="HIBERNATE LIST REVIEWS">
+         <font>
+            <Font name="System Italic" size="27.0" />
+         </font>
+      </Label>
+      <ListView fx:id="lvReviews" onMouseClicked="#loadPantallaEmergente" layoutX="196.0" layoutY="94.0" prefHeight="267.0" prefWidth="377.0" />
+      <Label layoutX="352.0" layoutY="61.0" prefHeight="23.0" prefWidth="86.0" text="REVIEWS" textFill="#a104ea">
+         <font>
+            <Font name="Alef Regular" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="64.0" text="ORDER BY" textFill="#b91b1b">
+         <font>
+            <Font name="Arial Narrow Italic" size="15.0" />
+         </font></Label>
+      <ComboBox fx:id="cbOrderBy" layoutX="27.0" layoutY="111.0" prefWidth="150.0" />
+      <Button fx:id="btnOrder" layoutX="73.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnOrderClicked" text="ORDER" textFill="#1a1ae8">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font>
+      </Button>
+
+   </children>
+</AnchorPane>

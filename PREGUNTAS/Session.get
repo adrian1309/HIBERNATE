@@ -1,0 +1,10 @@
+Como introducir mas de un valor en el get?
+Solucion: No se puede, haces un select con los parametros que necesites y  ya. El get
+          es solo cuando buscas por un solo parametro como el ID.
+
+No puedo introducir el idCustomer pq no existe en model.Review. Como tengo que hacerlo?
+DAO REVIEW -> Reviews review =  session.get(Reviews.class, customer.getIdCustomer());
+Solucion: Accedes al customersByIdCustomer, y de ahi al idCustomer.
+
+Me daba este error en loadPurchases() cuando lo hacia con la clase Purchases en vez PurchasesData2
+Cannot invoke "String.hashCode()" because "<local3>" is null

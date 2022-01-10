@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.customers.FXMLPantallaEmergenteCustomersController">
+   <children>
+      <ListView fx:id="lvPurchasesData" layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="490.0" />
+   </children>
+</AnchorPane>

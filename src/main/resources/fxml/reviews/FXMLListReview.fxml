@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.reviews.FXMLListReviewController">
+   <children>
+      <TableView fx:id="reviewsTable" layoutX="29.0" layoutY="89.0" prefHeight="280.0" prefWidth="550.0">
+         <columns>
+            <TableColumn fx:id="idReviewColumnTable" prefWidth="80" text="IDREVIEW" />
+            <TableColumn fx:id="ratingColumnTable" prefWidth="60" text="RATING" />
+            <TableColumn fx:id="titleColumnTable" prefWidth="50" text="TITLE" />
+            <TableColumn fx:id="descriptionColumnTable" prefWidth="140" text="DESCRIPTION" />
+            <TableColumn fx:id="dateColumnTable" prefWidth="80" text="DATE" />
+            <TableColumn fx:id="idItemColumnTable" prefWidth="50" text="idIt" />
+            <TableColumn fx:id="idCustomerColumnTable" prefWidth="50" text="idCust" />
+            <TableColumn fx:id="idPurchaseColumnTable" prefWidth="50" text="idPurc" />
+         </columns>
+      </TableView>
+      <Label layoutX="30.0" layoutY="42.0" prefHeight="33.0" prefWidth="166.0" text="REVIEW LIST">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

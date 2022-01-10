@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.customers.FXMLHibernateListCustomersController">
+
+    <children>
+        <Label layoutX="33.0" layoutY="14.0" text="HIBERNATE LIST CUSTOMERS">
+            <font>
+                <Font name="System Italic" size="27.0" />
+            </font>
+        </Label>
+        <ListView fx:id="lvCustomers" layoutX="11.0" layoutY="91.0" onMouseClicked="#loadClickCustomer" prefHeight="267.0" prefWidth="200.0" />
+        <Label layoutX="11.0" layoutY="61.0" text="CUSTOMERS" textFill="#740ad1">
+            <font>
+                <Font name="Alef Regular" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="349.0" layoutY="79.0" text="SELECTED CUSTOMER" textFill="#9e15a0">
+            <font>
+                <Font name="Alef Bold" size="15.0" />
+            </font>
+        </Label>
+        <TableView fx:id="selectedCustomerTable" layoutX="280.0" layoutY="120.0" prefHeight="62.0" prefWidth="300.0">
+            <columns>
+                <TableColumn fx:id="telephoneColumnTable" prefWidth="150" text="PHONE" />
+                <TableColumn fx:id="addressColumnTable" prefWidth="150" text="ADDRESS" />
+            </columns>
+        </TableView>
+        <Label layoutX="367.0" layoutY="213.0" text="PURCHASES LIST" textFill="#dd03ff">
+            <font>
+                <Font name="Alef Bold" size="15.0" />
+            </font>
+        </Label>
+        <ListView fx:id="lvPurchasesList" layoutX="278.0" layoutY="242.0" onMouseClicked="#loadPantallaEmergenteCustomers" prefHeight="115.0" prefWidth="303.0" />
+
+    </children>
+
+</AnchorPane>

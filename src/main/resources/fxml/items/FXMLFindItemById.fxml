@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.items.FXMLFindItemByIdController">
+   <children>
+      <Label layoutX="57.0" layoutY="154.0" prefHeight="40.0" prefWidth="146.0" text="FIND ITEM BY ID">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="194.0" prefHeight="17.0" prefWidth="72.0" text="Insert ID: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfFindItemById" layoutX="56.0" layoutY="220.0" promptText="Introduce the Id..." />
+      <ListView fx:id="lvItemFound" layoutX="246.0" layoutY="213.0" prefHeight="40.0" prefWidth="322.0" />
+      <Label layoutX="246.0" layoutY="185.0" prefHeight="17.0" prefWidth="149.0" text="Item Found (reset window)" />
+      <Button defaultButton="true" layoutX="93.0" layoutY="275.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="40.0" prefWidth="72.0" text="Search">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.items.FXMLHibernateListItems">
+   <children>
+      <Label layoutX="33.0" layoutY="14.0" text="HIBERNATE LIST ITEMS">
+         <font>
+            <Font name="System Italic" size="27.0" />
+         </font>
+      </Label>
+      <ListView fx:id="lvItems" layoutX="11.0" layoutY="91.0" onMouseClicked="#loadClickItem" prefHeight="267.0" prefWidth="200.0" />
+      <Label layoutX="11.0" layoutY="61.0" text="ITEMS" textFill="#740ad1">
+         <font>
+            <Font name="Alef Regular" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="372.0" layoutY="41.0" text="SELECTED ITEM" textFill="#9e15a0">
+         <font>
+            <Font name="Alef Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="selectedItemTable" layoutX="272.0" layoutY="73.0" prefHeight="62.0" prefWidth="315.0">
+         <columns>
+            <TableColumn fx:id="priceColumnTable" prefWidth="105" text="PRICE" />
+            <TableColumn fx:id="purchasesLastMonthColumnTable" prefWidth="105" text="NºP.LastMonth" />
+            <TableColumn fx:id="avgRatingColumnTable" prefWidth="105" text="AVG Rating" />
+         </columns>
+      </TableView>
+      <Label layoutX="383.0" layoutY="213.0" text="REVIEW LIST" textFill="#dd03ff">
+         <font>
+            <Font name="Alef Bold" size="15.0" />
+         </font>
+      </Label>
+      <ListView fx:id="lvReviewList" layoutX="278.0" layoutY="242.0" onMouseClicked="#loadPantallaEmergente" prefHeight="115.0" prefWidth="303.0" />
+      <Label layoutX="366.0" layoutY="147.0" text="Order by (optional)" textFill="#dc729a">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="rbDate" layoutX="275.0" layoutY="182.0" mnemonicParsing="false" text="DATE">
+         <toggleGroup>
+            <ToggleGroup fx:id="type" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rbRating" layoutX="339.0" layoutY="182.0" mnemonicParsing="false" text="RATING" toggleGroup="$type" />
+      <RadioButton fx:id="rbAsc" layoutX="512.0" layoutY="167.0" mnemonicParsing="false" text="ASC">
+         <toggleGroup>
+            <ToggleGroup fx:id="form" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rbDesc" layoutX="512.0" layoutY="199.0" mnemonicParsing="false" text="DESC" toggleGroup="$form" />
+
+   </children>
+</AnchorPane>

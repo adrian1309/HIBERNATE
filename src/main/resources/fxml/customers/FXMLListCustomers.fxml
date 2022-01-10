@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.customers.FXMLListCustomersController">
+   <children>
+      <TableView fx:id="customersTable" layoutX="29.0" layoutY="89.0" prefHeight="280.0" prefWidth="350.0">
+         <columns>
+            <TableColumn fx:id="nameColumnTable" prefWidth="50" text="NAME" />
+            <TableColumn fx:id="phoneColumnTable" prefWidth="150" text="PHONE" />
+            <TableColumn fx:id="addressColumnTable" prefWidth="150.0" text="ADDRESS" />
+         </columns>
+      </TableView>
+      <Label layoutX="36.0" layoutY="41.0" prefHeight="37.0" prefWidth="168.0" text="CUSTOMER LIST">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

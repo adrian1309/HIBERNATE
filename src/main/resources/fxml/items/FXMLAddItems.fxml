@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.items.FXMLAddItemController">
+    <children>
+        <TextField fx:id="txtNameItem" layoutX="58.0" layoutY="154.0" />
+        <Button defaultButton="true" layoutX="292.0" layoutY="214.0" mnemonicParsing="false" onAction="#addItems" prefHeight="49.0" prefWidth="122.0" text="Save new item" />
+        <Label layoutX="68.0" layoutY="127.0" text="Name" />
+        <Label layoutX="29.0" layoutY="73.0" text="Item list:" />
+        <Label layoutX="29.0" layoutY="38.0" text="ADD A NEW ITEM" textFill="#000000bb">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+      <Label layoutX="68.0" layoutY="200.0" text="Company" />
+      <Label layoutX="71.0" layoutY="273.0" text="Price" />
+      <TextField fx:id="txtCompanyItem" layoutX="58.0" layoutY="226.0" />
+      <TextField fx:id="txtPriceItem" layoutX="58.0" layoutY="297.0" />
+    </children>
+</AnchorPane>

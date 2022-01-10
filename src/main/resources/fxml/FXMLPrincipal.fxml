@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane id="AnchorPane" fx:id="fxRoot" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPrincipalController">
+   <top>
+      <MenuBar fx:id="fxMenuTop" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#chargeLogin" text="Go back to login" />
+                  <MenuItem mnemonicParsing="false" onAction="#chargeWelcome" text="Welcome Pane" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Items">
+               <items>
+                  <MenuItem fx:id="addItemMenuBar" mnemonicParsing="false" onAction="#chargeAddItems" text="Add Item" />
+                  <MenuItem fx:id="listItemMenuBar" mnemonicParsing="false" onAction="#chargeListItems" text="List Items" />
+                  <MenuItem fx:id="findItemMenuBar" mnemonicParsing="false" onAction="#chargeFindIdItems" text="Find by ID" />
+                  <MenuItem fx:id="deleteItemMenuBar" mnemonicParsing="false" onAction="#chargeDeleteItems" text="Delete Item" />
+                  <MenuItem fx:id="updateItemMenuBar" mnemonicParsing="false" onAction="#chargeUpdateItems" text="Update Item" />
+                  <MenuItem fx:id="hibernateListItemMenuBar" mnemonicParsing="false" onAction="#chargeHibernateItems" text="Hibernate List Items"/>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Customers" fx:id="customerMenuBar">
+              <items>
+                <MenuItem mnemonicParsing="false"  onAction="#chargeAddCustomer" text="Add Customer" />
+                  <MenuItem mnemonicParsing="false" onAction="#chargeListCustomers" text="List Customers" />
+                  <MenuItem mnemonicParsing="false" onAction="#chargeFindByIdCustomer" text="Find by ID" />
+                  <MenuItem mnemonicParsing="false" onAction="#chargeDeleteCustomer" text="Delete Customer" />
+                  <MenuItem fx:id="hibernateListCustomerMenuBar" mnemonicParsing="false" onAction="#chargeHibernateCustomers" text="Hibernate List Customers"/>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Purchases">
+              <items>
+                  <MenuItem fx:id="addPurchaseMenuBar" mnemonicParsing="false" onAction="#chargeAddPurchases" text="Add Purchase" />
+                  <MenuItem fx:id="findPurchaseMenuBar" mnemonicParsing="false" onAction="#chargeDatePurchases" text="Find by Date" />
+                  <MenuItem fx:id="deletePurchaseMenuBar" mnemonicParsing="false" onAction="#chargeDeletePurchases" text="Delete Purchase" />
+                  <MenuItem fx:id="hibernateListPurchaseMenuBar" mnemonicParsing="false" onAction="#chargeHibernatePurchases" text="Hibernate List Purchases"/>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Reviews">
+              <items>
+                <MenuItem fx:id="addReviewMenuBar" mnemonicParsing="false" onAction="#chargeAddReview" text="Add review" />
+                  <MenuItem fx:id="listReviewMenuBar" mnemonicParsing="false" onAction="#chargeListReview" text="List Review" />
+                  <MenuItem fx:id="findReviewMenuBar" mnemonicParsing="false" onAction="#chargeFindReview" text="Find by Item" />
+                  <MenuItem fx:id="deleteReviewMenuBar" mnemonicParsing="false" onAction="#chargeDeleteReview" text="Delete Review" />
+                  <MenuItem fx:id="hibernateListReviewMenuBar" mnemonicParsing="false" onAction="#chargeHibernateReviews" text="Hibernate List Reviews"/>
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
