@@ -65,17 +65,16 @@ public class FXMLHibernateListItems implements Initializable {
         try {
             selectedItemTable.getItems().clear();
             Items itemSelected = lvItems.getSelectionModel().getSelectedItem();
-            /* Esto da error
-            Integer purchasesLastMonth = fxmlPrincipalController.getItemService().getPurchasesLastMonth(itemSelected);
-             */
+
+            Long purchasesLastMonth = fxmlPrincipalController.getItemService().getPurchasesLastMonth(itemSelected);
+
             Double avgRating = fxmlPrincipalController.getItemService().getAvgRating(itemSelected);
             System.out.println(avgRating);
             Double nulo = -1.0;
             if (!avgRating.equals(nulo)){
                 ItemsData patata = new ItemsData();
                 patata.setPrice(itemSelected.getPrice());
-                //patata.setNumPurchasesLastMonth(purchasesLastMonth);
-                patata.setNumPurchasesLastMonth(0);
+                patata.setNumPurchasesLastMonth(purchasesLastMonth);
                 patata.setAvgRating(avgRating);
                 selectedItemTable.getItems().add(patata);
             }else{

@@ -16,7 +16,7 @@ public interface ItemService {
 
     Items getById(int idItem);
 
-    int getPurchasesLastMonth(Items item);
+    long getPurchasesLastMonth(Items item);
 
     double getAvgRating(Items item);
 

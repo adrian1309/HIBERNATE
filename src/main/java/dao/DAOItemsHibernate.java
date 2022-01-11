@@ -7,7 +7,9 @@ import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,12 +94,29 @@ public class DAOItemsHibernate {
         }
     }
 
-
-    public int getPurchasesLastMonth(Items item){
+    /* NO FUNSIONA
+    public int getPurchasesLastMonthFail(Items item){
         session = HibernateUtils.getSession();
         Query query = session.createQuery("select count(idPurchase) from Purchases p where p.itemsByIdItem.idItem = :idItem and date BETWEEN DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01 00:00:00') AND DATE_FORMAT(LAST_DAY(current_date() - 30, '%Y-%m-%d 23:59:59'))");
         query.setParameter("idItem", item.getIdItem());
         Integer result = (Integer) query.uniqueResult();
+        session.close();
+        return result;
+    }
+     */
+
+    public long getPurchasesLastMonth(Items item){
+        Calendar calendar = new GregorianCalendar();
+        int monthActual = calendar.get(Calendar.MONTH) + 1;
+        int monthBefore = Math.abs(monthActual - 13);
+        System.out.println(monthBefore);
+
+        session = HibernateUtils.getSession();
+        Query query = session.createQuery("select count(idPurchase) from Purchases p " +
+                " where p.itemsByIdItem.idItem = :idItem and month(date) like :month");
+        query.setParameter("idItem", item.getIdItem());
+        query.setParameter("month", monthBefore);
+        Long result = (Long) query.uniqueResult();
         session.close();
         return result;
     }

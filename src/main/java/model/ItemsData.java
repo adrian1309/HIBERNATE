@@ -10,7 +10,7 @@ import lombok.*;
 public class ItemsData {
 
     private Double price;
-    private Integer numPurchasesLastMonth;
+    private Long numPurchasesLastMonth;
     private Double avgRating;
 
     @Override

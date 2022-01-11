@@ -39,7 +39,7 @@ public class ItemServiceHiber implements ItemService {
     }
 
     @Override
-    public int getPurchasesLastMonth(Items item) {
+    public long getPurchasesLastMonth(Items item) {
         DAOItemsHibernate dao = new DAOItemsHibernate();
         return dao.getPurchasesLastMonth(item);
     }
