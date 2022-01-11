@@ -94,7 +94,7 @@ public class DAOItemsHibernate {
         }
     }
 
-    /* NO FUNSIONA
+
     public int getPurchasesLastMonthFail(Items item){
         session = HibernateUtils.getSession();
         Query query = session.createQuery("select count(idPurchase) from Purchases p where p.itemsByIdItem.idItem = :idItem and date BETWEEN DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01 00:00:00') AND DATE_FORMAT(LAST_DAY(current_date() - 30, '%Y-%m-%d 23:59:59'))");
@@ -103,7 +103,6 @@ public class DAOItemsHibernate {
         session.close();
         return result;
     }
-     */
 
     public long getPurchasesLastMonth(Items item){
         Calendar calendar = new GregorianCalendar();

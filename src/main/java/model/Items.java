@@ -124,6 +124,10 @@ public class Items {
         return "N: " + name + " C: " + company;
 
     }
+
+    public String toStringIdAndName(){
+        return "ID: " + idItem + " Name: " + name;
+    }
 }
 
 

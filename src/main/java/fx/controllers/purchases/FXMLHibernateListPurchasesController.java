@@ -4,9 +4,9 @@ import fx.controllers.FXMLPrincipalController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import model.Customers;
+import model.Items;
 import model.Purchases;
 import model.PurchasesData2;
 
@@ -19,6 +19,14 @@ public class FXMLHibernateListPurchasesController implements Initializable {
     @FXML
     private ComboBox<String> cbOrderBy;
     @FXML
+    private ListView<Object> lvItemOrCustomers;
+    @FXML
+    private DatePicker dpFirstPeriod;
+    @FXML
+    private DatePicker dpSecondPeriod;
+    @FXML
+    private Button btnOrder;
+    @FXML
     private ListView<PurchasesData2> lvPurchases;
 
     private FXMLPrincipalController principalController = new FXMLPrincipalController();
@@ -27,21 +35,53 @@ public class FXMLHibernateListPurchasesController implements Initializable {
         principalController = fxmlPrincipalController;
     }
 
+    public void loadItemsOrCustomer(){
+        String selectedInComboBox = cbOrderBy.getSelectionModel().getSelectedItem();
+        switch (selectedInComboBox) {
+            case "Item":
+                lvItemOrCustomers.getItems().clear();
+                lvItemOrCustomers.setDisable(false);
+                List<Items> itemsList = principalController.getItemService().getAll();
+                for (Items i: itemsList){
+                    lvItemOrCustomers.getItems().add(i.toStringIdAndName());
+                }
+                break;
+            case "Customer":
+                lvItemOrCustomers.getItems().clear();
+                lvItemOrCustomers.setDisable(false);
+                List<Customers> customersList = principalController.getCustomerService().getAllCustomers();
+                for (Customers c: customersList){
+                    lvItemOrCustomers.getItems().add(c.toStringIdAndName());
+                }
+            case "Period Date":
+                dpFirstPeriod.setDisable(false);
+                dpSecondPeriod.setDisable(false);
+                btnOrder.setDisable(false);
+
+        }
+    }
+
     public void loadPurchases() {
         List<Purchases> listPurchases = principalController.getPurchaseService().getAllPurchases();
         createPurchasesData2(listPurchases);
     }
 
-        public void loadComboBox () {
+    public void loadComboBox () {
             cbOrderBy.getItems().addAll("Item", "Customer", "Period Date");
         }
 
+    public void clearLists () {
+        cbOrderBy.getSelectionModel().clearSelection();
+        lvItemOrCustomers.getItems().clear();
+        lvItemOrCustomers.setDisable(true);
+        dpFirstPeriod.setDisable(false);
+        dpSecondPeriod.setDisable(false);
+        btnOrder.setDisable(false);
+        lvPurchases.getItems().clear();
 
-        public void clearLists () {
-            lvPurchases.getItems().clear();
         }
 
-    public void btnOrderClicked(ActionEvent actionEvent) {
+    public void btnOrderPeriodClicked(ActionEvent actionEvent) {
         String selectedInComboBox = cbOrderBy.getSelectionModel().getSelectedItem();
         switch (selectedInComboBox) {
             case "Item":

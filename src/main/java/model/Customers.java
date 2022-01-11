@@ -137,4 +137,8 @@ public class Customers {
                 " Name: '" + name;
     }
 
+    public String toStringIdAndName(){
+        return "ID: " + idCustomer + " Name: " + name;
+    }
+
 }
