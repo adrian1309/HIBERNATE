@@ -1,9 +1,11 @@
 package services;
 
 import model.Customers;
+import model.Items;
 import model.Purchases;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PurchaseService {
@@ -17,9 +19,9 @@ public interface PurchaseService {
 
     List<Purchases> getPurchasesByIdCustomer(Customers customer);
 
-    List<Purchases> getPurchasesOrderByItem();
+    List<Purchases> getPurchasesListByItem(Items item);
 
-    List<Purchases> getPurchasesOrderByCustomer();
+    List<Purchases> getPurchasesListByCustomer(Customers customer);
 
-    List<Purchases> getPurchasesOrderByDate();
+    List<Purchases> getPurchasesListByDate(LocalDate date1, LocalDate date2);
 }

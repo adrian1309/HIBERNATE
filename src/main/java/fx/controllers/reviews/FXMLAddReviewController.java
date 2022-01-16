@@ -92,7 +92,8 @@ public class FXMLAddReviewController implements Initializable {
     public void addReview() {
         try {
             Reviews review = new Reviews();
-            review.setIdReview(ratingBox.getSelectionModel().getSelectedItem());
+            review.setIdReview(-1);
+            review.setRating(ratingBox.getSelectionModel().getSelectedItem());
             review.setTitle(titleBox.getText());
             review.setDescription(textBox.getText());
             review.setDate(Date.valueOf(dateBox.getValue()));

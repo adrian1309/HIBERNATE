@@ -2,11 +2,14 @@ package dao;
 
 import model.Items;
 import model.Reviews;
+import org.hibernate.QueryException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -59,6 +62,23 @@ public class DAOItemsHibernate {
         Transaction transaction = null;
         try {
             session = HibernateUtils.getSession();
+
+            //transacciones. Hay que usarlas?. E usado el cascade
+            //@OneToMany(mappedBy = "itemsByIdItem", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+            //@OneToMany(mappedBy = "purchasesByIdPurchase", cascade = CascadeType.REMOVE)
+
+            /*
+            transaction = session.beginTransaction();
+            Query queryReviews = session.createQuery("delete from Reviews r where r.itemsByIdItem.idItem = :idItemklk");
+            queryReviews.setParameter("idItemklk", item.getIdItem());
+            transaction.commit();
+
+            transaction = session.beginTransaction();
+            Query queryPurchases = session.createQuery("delete from Purchases p where p.itemsByIdItem.idItem = :idItem");
+            queryPurchases.setParameter("idItem", item.getIdItem());
+            transaction.commit();
+             */
+
             transaction = session.beginTransaction();
             session.delete(item);
             transaction.commit();

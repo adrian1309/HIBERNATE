@@ -134,7 +134,7 @@ public class Customers {
     @Override
     public String toString() {
         return "ID: " + idCustomer +
-                " Name: '" + name;
+                " Name: " + name;
     }
 
     public String toStringIdAndName(){

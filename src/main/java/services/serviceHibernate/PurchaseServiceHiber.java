@@ -2,10 +2,12 @@ package services.serviceHibernate;
 
 import dao.DAOPurchasesHibernate;
 import model.Customers;
+import model.Items;
 import model.Purchases;
 import services.PurchaseService;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class PurchaseServiceHiber implements PurchaseService {
@@ -40,21 +42,21 @@ public class PurchaseServiceHiber implements PurchaseService {
     }
 
     @Override
-    public List<Purchases> getPurchasesOrderByItem() {
+    public List<Purchases> getPurchasesListByItem(Items item) {
         DAOPurchasesHibernate dao = new DAOPurchasesHibernate();
-        return dao.getPurchasesOrderByItem();
+        return dao.getPurchasesListByItem(item);
     }
 
     @Override
-    public List<Purchases> getPurchasesOrderByCustomer() {
+    public List<Purchases> getPurchasesListByCustomer(Customers customer) {
         DAOPurchasesHibernate dao = new DAOPurchasesHibernate();
-        return dao.getPurchasesOrderByCustomer();
+        return dao.getPurchasesListByCustomer(customer);
     }
 
     @Override
-    public List<Purchases> getPurchasesOrderByDate() {
+    public List<Purchases> getPurchasesListByDate(LocalDate date1, LocalDate date2) {
         DAOPurchasesHibernate dao = new DAOPurchasesHibernate();
-        return dao.getPurchasesOrderByDate();
+        return dao.getPurchasesListByDate(date1, date2);
     }
 
 

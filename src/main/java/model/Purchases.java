@@ -76,7 +76,7 @@ public class Purchases {
         this.itemsByIdItem = itemsByIdItem;
     }
 
-    @OneToMany(mappedBy = "purchasesByIdPurchase")
+    @OneToMany(mappedBy = "purchasesByIdPurchase", cascade = CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
     public Collection<Reviews> getReviewsByIdPurchase() {
         return reviewsByIdPurchase;

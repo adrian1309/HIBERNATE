@@ -5,12 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import model.Customers;
 import model.Items;
 import model.Purchases;
 import model.PurchasesData2;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,25 +41,46 @@ public class FXMLHibernateListPurchasesController implements Initializable {
         String selectedInComboBox = cbOrderBy.getSelectionModel().getSelectedItem();
         switch (selectedInComboBox) {
             case "Item":
+                lvPurchases.getItems().clear();
+                loadPurchases();
                 lvItemOrCustomers.getItems().clear();
+                dpFirstPeriod.getEditor().clear();
+                dpSecondPeriod.getEditor().clear();
                 lvItemOrCustomers.setDisable(false);
+                dpFirstPeriod.setDisable(true);
+                dpSecondPeriod.setDisable(true);
+                btnOrder.setDisable(true);
                 List<Items> itemsList = principalController.getItemService().getAll();
                 for (Items i: itemsList){
-                    lvItemOrCustomers.getItems().add(i.toStringIdAndName());
+                    lvItemOrCustomers.getItems().add(i);
                 }
                 break;
             case "Customer":
+                lvPurchases.getItems().clear();
+                loadPurchases();
                 lvItemOrCustomers.getItems().clear();
+                dpFirstPeriod.getEditor().clear();
+                dpSecondPeriod.getEditor().clear();
                 lvItemOrCustomers.setDisable(false);
+                dpFirstPeriod.setDisable(true);
+                dpSecondPeriod.setDisable(true);
+                btnOrder.setDisable(true);
                 List<Customers> customersList = principalController.getCustomerService().getAllCustomers();
                 for (Customers c: customersList){
-                    lvItemOrCustomers.getItems().add(c.toStringIdAndName());
+                    lvItemOrCustomers.getItems().add(c);
                 }
+                break;
             case "Period Date":
+                lvPurchases.getItems().clear();
+                loadPurchases();
+                lvItemOrCustomers.getItems().clear();
+                dpFirstPeriod.getEditor().clear();
+                dpSecondPeriod.getEditor().clear();
+                lvItemOrCustomers.setDisable(true);
                 dpFirstPeriod.setDisable(false);
                 dpSecondPeriod.setDisable(false);
                 btnOrder.setDisable(false);
-
+                break;
         }
     }
 
@@ -67,44 +90,67 @@ public class FXMLHibernateListPurchasesController implements Initializable {
     }
 
     public void loadComboBox () {
-            cbOrderBy.getItems().addAll("Item", "Customer", "Period Date");
+        cbOrderBy.getItems().addAll("Item", "Customer", "Period Date");
+    }
+
+    public void loadPurchasesListByItemOrCustomer(MouseEvent mouseEvent) {
+        PurchasesData2 purchaseData2 = null;
+
+        if (cbOrderBy.getSelectionModel().getSelectedItem().equals("Item")){
+            Object itemOrCustomerSelected = lvItemOrCustomers.getSelectionModel().getSelectedItem();
+            List<Purchases> listPurchases = principalController.getPurchaseService().getPurchasesListByItem((Items) itemOrCustomerSelected);
+            lvPurchases.getItems().clear();
+            for (Purchases p: listPurchases){
+                purchaseData2 = new PurchasesData2();
+                purchaseData2.setIdItem(p.getItemsByIdItem().getIdItem());
+                purchaseData2.setIdCustomer(p.getCustomersByIdCustomer().getIdCustomer());
+                purchaseData2.setDate(p.getDate());
+                lvPurchases.getItems().add(purchaseData2);
+            }
+
+        }else if (cbOrderBy.getSelectionModel().getSelectedItem().equals("Customer")){
+            Object itemOrCustomerSelected = lvItemOrCustomers.getSelectionModel().getSelectedItem();
+            List<Purchases> listPurchases = principalController.getPurchaseService().getPurchasesListByCustomer((Customers) itemOrCustomerSelected);
+            lvPurchases.getItems().clear();
+            for (Purchases p: listPurchases){
+                purchaseData2 = new PurchasesData2();
+                purchaseData2.setIdItem(p.getItemsByIdItem().getIdItem());
+                purchaseData2.setIdCustomer(p.getCustomersByIdCustomer().getIdCustomer());
+                purchaseData2.setDate(p.getDate());
+                lvPurchases.getItems().add(purchaseData2);
+            }
         }
 
+    }
+
     public void clearLists () {
+        cbOrderBy.getItems().clear();
         cbOrderBy.getSelectionModel().clearSelection();
         lvItemOrCustomers.getItems().clear();
         lvItemOrCustomers.setDisable(true);
-        dpFirstPeriod.setDisable(false);
-        dpSecondPeriod.setDisable(false);
-        btnOrder.setDisable(false);
+        dpFirstPeriod.setDisable(true);
+        dpSecondPeriod.setDisable(true);
+        btnOrder.setDisable(true);
         lvPurchases.getItems().clear();
 
         }
 
     public void btnOrderPeriodClicked(ActionEvent actionEvent) {
-        String selectedInComboBox = cbOrderBy.getSelectionModel().getSelectedItem();
-        switch (selectedInComboBox) {
-            case "Item":
-                lvPurchases.getItems().clear();
-                List<Purchases> purchasesListOrderByItem = principalController.getPurchaseService().getPurchasesOrderByItem();
-                createPurchasesData2(purchasesListOrderByItem);
-                break;
-            case "Customer":
-                lvPurchases.getItems().clear();
-                List<Purchases> purchasesListOrderByCustomer = principalController.getPurchaseService().getPurchasesOrderByCustomer();
-                createPurchasesData2(purchasesListOrderByCustomer);
-                break;
-            case "Period Date":
-                lvPurchases.getItems().clear();
-                List<Purchases> purchasesListOrderByDate = principalController.getPurchaseService().getPurchasesOrderByDate();
-                createPurchasesData2(purchasesListOrderByDate);
-                break;
-            default:
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("INFORMATION");
-                alert.setContentText("You must selected one item in the combobox to order the list");
-                alert.setAlertType(Alert.AlertType.INFORMATION);
-                alert.showAndWait();
+        try{
+            PurchasesData2 purchaseData2 = null;
+            LocalDate firstPeriod = dpFirstPeriod.getValue();
+            LocalDate secondPeriod = dpSecondPeriod.getValue();
+            List<Purchases> listPurchases = principalController.getPurchaseService().getPurchasesListByDate(firstPeriod, secondPeriod);
+            lvPurchases.getItems().clear();
+            for (Purchases p: listPurchases) {
+                purchaseData2 = new PurchasesData2();
+                purchaseData2.setIdItem(p.getItemsByIdItem().getIdItem());
+                purchaseData2.setIdCustomer(p.getCustomersByIdCustomer().getIdCustomer());
+                purchaseData2.setDate(p.getDate());
+                lvPurchases.getItems().add(purchaseData2);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -122,4 +168,6 @@ public class FXMLHibernateListPurchasesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+
 }

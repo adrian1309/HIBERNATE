@@ -1,11 +1,14 @@
 package dao;
 
 import model.Customers;
+import model.Items;
 import model.Purchases;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,23 +70,37 @@ public class DAOPurchasesHibernate {
         return listPurchases;
     }
 
-    public List<Purchases> getPurchasesOrderByItem(){
+    public List<Purchases> getPurchasesListByItem(Items item){
         session = HibernateUtils.getSession();
-        Query query = session.createQuery("select p from Purchases p order by itemsByIdItem.idItem");
+        Query query = session.createQuery("select p from Purchases p where p.itemsByIdItem.idItem = :idItem");
+        query.setParameter("idItem", item.getIdItem());
         List<Purchases> purchasesList = query.list();
         session.close();
         return purchasesList;
     }
 
-    public List<Purchases> getPurchasesOrderByCustomer(){
+    public List<Purchases> getPurchasesListByCustomer(Customers customer){
         session = HibernateUtils.getSession();
-        Query query = session.createQuery("select p from Purchases p order by customersByIdCustomer.idCustomer");
+        Query query = session.createQuery("select p from Purchases p where p.customersByIdCustomer.idCustomer = :idCustomer");
+        query.setParameter("idCustomer", customer.getIdCustomer());
         List<Purchases> purchasesList = query.list();
         session.close();
         return purchasesList;
     }
 
-    public List<Purchases> getPurchasesOrderByDate(){
+    public List<Purchases> getPurchasesListByDate(LocalDate localDate1, LocalDate localDate2){
+        Date date1 = Date.valueOf(localDate1.toString());
+        Date date2 = Date.valueOf(localDate2.toString());
+        session = HibernateUtils.getSession();
+        Query query = session.createQuery("select p from Purchases p where date between :date1 and :date2");
+        query.setParameter("date1", date1);
+        query.setParameter("date2", date2);
+        List<Purchases> purchasesList = query.list();
+        session.close();
+        return purchasesList;
+    }
+
+    public List<Purchases> getPurchasesOrderByDateNoUsado(){
         session = HibernateUtils.getSession();
         Query query = session.createQuery("select p from Purchases p order by date");
         List<Purchases> purchasesList = query.list();

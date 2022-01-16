@@ -100,7 +100,7 @@ public class Items {
     /*No deja poner dos fetch = FetchType.EAGER,
     asique la otra opcion es @LazyCollection(LazyCollectionOption.FALSE)*/
 
-    @OneToMany(mappedBy = "itemsByIdItem", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "itemsByIdItem", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     public Collection<Purchases> getPurchasesByIdItem() {
         return purchasesByIdItem;
     }
